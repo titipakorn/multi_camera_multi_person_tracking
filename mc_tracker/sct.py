@@ -168,15 +168,15 @@ class SingleCameraTracker:
         self.tracks = list(filter(None, self.tracks))
     def tlbr_to_tlwh(self,boxes):
         ret = np.array(boxes)
-        ret[2:] -= ret[:2]
+        np.subtract(ret[2:],ret[:2],out=ret[2:],casting="unsafe")
         return ret
     def tlwh_to_xyah(self,boxes):
         """Convert bounding box to format `(center x, center y, aspect ratio,
         height)`, where the aspect ratio is `width / height`.
         """
         ret = np.array(boxes)
-        ret[:2] += ret[2:] / 2
-        ret[2] /= ret[3]
+        np.add(ret[:2],ret[2:] / 2,out=ret[:2],casting="unsafe")
+        np.divide(ret[2],ret[3],out=ret[2],casting="unsafe")
         return ret
     def _continue_tracks(self, detections, features):
         active_tracks_idx = []
