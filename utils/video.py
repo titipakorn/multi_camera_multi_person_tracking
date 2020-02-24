@@ -49,6 +49,8 @@ class MulticamCapture:
             has_frame, frame = capture.read()
             if has_frame:
                 frames.append(frame)
+            for _ in range(9):
+                capture.read()
 
         return len(frames) == len(self.captures), frames
 
