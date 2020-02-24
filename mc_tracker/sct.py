@@ -81,7 +81,7 @@ def clusters_vec_distance(clusters, feature):
 class SingleCameraTracker:
     COUNT_IN=0
     COUNT_OUT=0
-    def __init__(self, in_area, out_area ,id, global_id_getter, global_id_releaser,
+    def __init__(self,id, global_id_getter, global_id_releaser,
                  reid_model=None,
                  time_window=10,
                  continue_time_thresh=2,
@@ -91,9 +91,9 @@ class SingleCameraTracker:
                  n_clusters=4,
                  max_bbox_velocity=0.2,
                  detection_occlusion_thresh=0.7,
-                 track_detection_iou_thresh=0.5):
-        self.out_poly=Polygon(out_area)
-        self.in_poly=Polygon(in_area)
+                 track_detection_iou_thresh=0.5,p_in,p_out):
+        self.out_poly=Polygon(tuple(p_out))
+        self.in_poly=Polygon(tuple(p_in))
         self.reid_model = reid_model
         self.global_id_getter = global_id_getter
         self.global_id_releaser = global_id_releaser
