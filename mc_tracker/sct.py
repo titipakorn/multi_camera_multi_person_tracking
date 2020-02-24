@@ -167,14 +167,14 @@ class SingleCameraTracker:
             track_candidate['f_cluster'] = copy(new_clusters)
         self.tracks = list(filter(None, self.tracks))
     def tlbr_to_tlwh(self,boxes):
-        ret = boxes.copy()
+        ret = np.array(boxes)
         ret[2:] -= ret[:2]
         return ret
     def tlwh_to_xyah(self,boxes):
         """Convert bounding box to format `(center x, center y, aspect ratio,
         height)`, where the aspect ratio is `width / height`.
         """
-        ret =  boxes.copy()
+        ret = np.array(boxes)
         ret[:2] += ret[2:] / 2
         ret[2] /= ret[3]
         return ret
