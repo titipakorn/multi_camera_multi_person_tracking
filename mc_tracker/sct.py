@@ -182,7 +182,7 @@ class SingleCameraTracker:
         active_tracks_idx = []
         for i, track in enumerate(self.tracks):
             if track['timestamps'][-1] >= self.time - self.continue_time_thresh:
-                boxes=self.tlwh_to_xyah(self.tlbr_to_tlwh(track['boxes']))
+                boxes=self.tlwh_to_xyah(self.tlbr_to_tlwh(track['boxes'][-1]))
                 current_point = Point((boxes[0],boxes[1])) #center
                 if(current_point.within(self.in_poly)):
                     if(track['in_state']>=2):
