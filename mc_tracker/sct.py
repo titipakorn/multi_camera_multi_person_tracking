@@ -176,13 +176,13 @@ class SingleCameraTracker:
         """
         ret = np.array(boxes)
         np.add(ret[:2],ret[2:] / 2,out=ret[:2],casting="unsafe")
-        np.divide(ret[2],ret[3],out=ret[2],casting="unsafe")
+        ret[2] /= ret[3]
         return ret
     def _continue_tracks(self, detections, features):
         active_tracks_idx = []
         for i, track in enumerate(self.tracks):
             if track['timestamps'][-1] >= self.time - self.continue_time_thresh:
-                boxes=self.tlwh_to_xyah(self.tlbr_to_tlwh(track['boxes'][-1]))
+                boxes=self.tlwh_to_xyah(self.tlbr_to_tlwh(track['boxes']))
                 current_point = Point((boxes[0],boxes[1])) #center
                 if(current_point.within(self.in_poly)):
                     if(track['in_state']>=2):
