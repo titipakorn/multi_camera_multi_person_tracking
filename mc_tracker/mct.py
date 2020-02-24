@@ -32,7 +32,7 @@ class MultiCameraTracker:
         self.time_window = time_window  # should be greater than time window in scts
         self.global_match_thresh = global_match_thresh
         for i in range(num_sources):
-            self.scts.append(SingleCameraTracker(tuple(footfall_config.p_in),tuple(footfall_config.p_out),i, self._get_next_global_id,
+            self.scts.append(SingleCameraTracker(tuple(footfall_config['p_in']),tuple(footfall_config['p_out']),i, self._get_next_global_id,
                                                  self._release_global_id,
                                                  reid_model, **sct_config))
 
