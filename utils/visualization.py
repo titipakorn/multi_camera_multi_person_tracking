@@ -19,7 +19,7 @@ from mc_tracker.sct import SingleCameraTracker
 
 def draw_detections(frame, detections):
     """Draws detections and labels"""
-    cv.putText(frame, 'IN: {}, OUT: {}'.format(SingleCameraTracker.COUNT_IN,SingleCameraTracker.COUNT_OUT), (5, 0), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+    cv.putText(frame, 'IN: {}, OUT: {}'.format(SingleCameraTracker.COUNT_IN,SingleCameraTracker.COUNT_OUT), (5, 10), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     for i, obj in enumerate(detections):
         left, top, right, bottom = obj.rect
         label = obj.label
