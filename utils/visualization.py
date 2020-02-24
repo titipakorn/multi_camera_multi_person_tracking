@@ -19,6 +19,7 @@ from mc_tracker.sct import SingleCameraTracker
 
 def draw_detections(frame, detections):
     """Draws detections and labels"""
+    cv.putText(frame, 'IN: {}, OUT: {}'.format(SingleCameraTracker.COUNT_IN,SingleCameraTracker.COUNT_OUT), (5, 0), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
     for i, obj in enumerate(detections):
         left, top, right, bottom = obj.rect
         label = obj.label
@@ -32,8 +33,6 @@ def draw_detections(frame, detections):
         cv.rectangle(frame, (left, top - label_size[1]), (left + label_size[0], top + base_line),
                      (255, 255, 255), cv.FILLED)
         cv.putText(frame, label, (left, top), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-        cv.putText(frame, 'IN: {}, OUT: {}'.format(SingleCameraTracker.COUNT_IN,SingleCameraTracker.COUNT_OUT), (left, top+20), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-
 
 def visualize_multicam_detections(frames, all_objects, fps=''):
     assert len(frames) == len(all_objects)
