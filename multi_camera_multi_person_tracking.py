@@ -56,8 +56,8 @@ def run(params, capture, detector, reid):
     config = {}
     if len(params.config):
         config = read_py_config(params.config)
-    print(config)
-    tracker = MultiCameraTracker(capture.get_num_sources(), reid, **config,**config)
+
+    tracker = MultiCameraTracker(capture.get_num_sources(), reid, **config)
 
     thread_body = FramesThreadBody(capture, max_queue_length=len(capture.captures) * 2)
     frames_thread = Thread(target=thread_body)

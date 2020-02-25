@@ -2,9 +2,6 @@
 # models, but should be suitable for other well-trained detector and reid models
 # Alse all tracking update intervals are set assumin input frequency about 30FPS
 
-time_window = 20
-global_match_thresh = 0.35
-
 sct_config = dict(
     time_window=10,
     continue_time_thresh=2,
