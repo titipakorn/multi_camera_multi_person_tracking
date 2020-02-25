@@ -185,7 +185,7 @@ class SingleCameraTracker:
                 boxes=self.tlwh_to_xyah(self.tlbr_to_tlwh(track['boxes'][-1]))
                 current_point = Point((boxes[0],boxes[1])) #center
                 if(current_point.within(self.in_poly)):
-                    if(track['in_state']>=2):
+                    if(track['in_state']>=1):
                         if(track['in_count'] is None):
                             if(track['out_state']==0 and track['out_status']):
                                 #COUNT IN
@@ -195,7 +195,7 @@ class SingleCameraTracker:
                     track['in_state']+=1
                     track['out_state']=0
                 if(current_point.within(self.out_poly)):
-                    if(track['out_state']>=2):
+                    if(track['out_state']>=1):
                         if(track['out_count'] is None):
                             if(track['in_state']==0 and track['in_status']):
                                 #COUNT OUT

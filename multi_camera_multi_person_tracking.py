@@ -23,6 +23,7 @@ import cv2 as cv
 
 from utils.network_wrappers import Detector, VectorCNN
 from mc_tracker.mct import MultiCameraTracker
+from mc_tracker.sct import SingleCameraTracker
 from utils.misc import read_py_config
 from utils.video import MulticamCapture
 from utils.visualization import visualize_multicam_detections
@@ -70,7 +71,7 @@ def run(params, capture, detector, reid):
                                       video_output_size)
     else:
         output_video = None
-
+    counter=0
     while thread_body.process:
         start = time.time()
         try:
@@ -96,8 +97,12 @@ def run(params, capture, detector, reid):
             cv.imshow(win_name, vis)
             if cv.waitKey(1) == 27:
                 break
+        else:
+            if(counter%10==0):
+                print(f"IN : {SingleCameraTracker.COUNT_IN}, OUT: {SingleCameraTracker.COUNT_OUT}")
         if output_video:
             output_video.write(cv.resize(vis, video_output_size))
+        counter+=1
 
     thread_body.process = False
     frames_thread.join()
