@@ -53,6 +53,7 @@ class FramesThreadBody:
 
 def run(params, capture, detector, reid):
     win_name = 'Multi camera tracking'
+    
     config = {}
     if len(params.config):
         config = read_py_config(params.config)
