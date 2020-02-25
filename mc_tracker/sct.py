@@ -97,8 +97,8 @@ class SingleCameraTracker:
                  max_bbox_velocity=0.2,
                  detection_occlusion_thresh=0.7,
                  track_detection_iou_thresh=0.5,p_in=[],p_out=[]):
-        self.out_poly=Polygon(tuple(convert_polygon(p_out)))
-        self.in_poly=Polygon(tuple(convert_polygon(p_in)))
+        self.out_poly=Polygon(tuple(convert_polygon(p_in)))
+        self.in_poly=Polygon(tuple(convert_polygon(p_out)))
         self.reid_model = reid_model
         self.global_id_getter = global_id_getter
         self.global_id_releaser = global_id_releaser
