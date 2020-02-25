@@ -94,6 +94,7 @@ class SingleCameraTracker:
                  track_detection_iou_thresh=0.5,p_in=[],p_out=[]):
         self.out_poly=Polygon(tuple(p_out))
         self.in_poly=Polygon(tuple(p_in))
+        print(p_out,p_in)
         self.reid_model = reid_model
         self.global_id_getter = global_id_getter
         self.global_id_releaser = global_id_releaser
