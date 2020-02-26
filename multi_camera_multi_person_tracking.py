@@ -18,7 +18,7 @@ from threading import Thread
 import json
 import logging as log
 import sys
-
+import os
 import cv2 as cv
 
 from utils.network_wrappers import Detector, VectorCNN
@@ -28,6 +28,8 @@ from utils.misc import read_py_config
 from utils.video import MulticamCapture
 from utils.visualization import visualize_multicam_detections
 from openvino.inference_engine import IECore # pylint: disable=import-error,E0611
+
+os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "rtsp_transport;tcp"
 
 log.basicConfig(stream=sys.stdout, level=log.DEBUG)
 

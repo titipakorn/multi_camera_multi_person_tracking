@@ -13,10 +13,6 @@
 
 import logging as log
 import cv2 as cv
-from utils.videos import WebcamVideoStream
-import os
-
-os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "rtsp_transport;tcp"
 
 class MulticamCapture:
     def __init__(self, sources):
@@ -42,16 +38,15 @@ class MulticamCapture:
         else:
             for video_path in sources:
                 log.info('Opening file {}'.format(video_path))
-                #cap = cv.VideoCapture(video_path)
-                cap = WebcamVideoStream(src=video_path).start()
-                assert cap.stream.isOpened()
+                cap = cv.VideoCapture(video_path)
+                assert cap.isOpened()
                 self.captures.append(cap)
 
     def get_frames(self):
         frames = []
         for capture in self.captures:
-            frame = capture.read()
-            if frame is not None:
+            has_frame, frame = capture.read()
+            if has_frame:
                 frame = cv.resize(frame,(858,480))
                 frames.append(frame)
 
