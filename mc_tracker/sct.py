@@ -80,7 +80,8 @@ def clusters_vec_distance(clusters, feature):
 def convert_polygon(json):
     y = []
     for i in json:
-        y.append(tuple((i["x"]*(858/1280), i["y"]*(480/720))))
+        #320,544
+        y.append(tuple((i["x"]*(320/1280), i["y"]*(544/720))))
     return y
 
 class SingleCameraTracker:
